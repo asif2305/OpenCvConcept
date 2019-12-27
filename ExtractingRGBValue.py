@@ -18,9 +18,27 @@ print("B = {}".format(B))
 #image = WithImage.cv2.resize(WithImage.image, (1200, 1450))
 ##print(image)
 region = WithImage.image[864:1060, 1134:1266]
-print(region)
+#print(region)
 # set the croping image
 
 WithImage.image[500:696, 600:732] = region
-WithImage.cv2.imshow('POI', WithImage.image)
+#WithImage.cv2.imshow('POI', WithImage.image)
+
+
+# Displaying text
+# copying the original image
+output=WithImage.image.copy()
+# Adding the text using putText() function
+text=WithImage.cv2.putText(output,'OpenCv Demo Test by Ahmed',(500,500),WithImage.cv2.FONT_HERSHEY_SIMPLEX,4,(255,0,0),2)
+WithImage.cv2.imshow('POI', output)
+# putText takes in 7 arguments –
+
+#Image
+#Text to be displayed
+#Bottom-left corner co-ordinates, from where the text should start
+#Font
+#Font size
+#Color (BGR format)
+#Line width
+
 WithImage.cv2.waitKey(0)
