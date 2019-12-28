@@ -27,7 +27,7 @@ thickness=5
 # Using cv2.rectangle() method
 # Draw a rectangle line blue line borders of thickness of 2 px
 image=cv2.rectangle(image,start_point,end_point,color,thickness)
-cv2.imshow('Road',image)
+#cv2.imshow('Road',image)
 cv2.waitKey(0)
 
 
