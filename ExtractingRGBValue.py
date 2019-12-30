@@ -20,7 +20,7 @@ print("B = {}".format(B))
 ##print(image)
 region = WithImage.image[864:1060, 1134:1266]
 # print(region)
-# set the croping image
+# set the croping images
 
 WithImage.image[500:696, 600:732] = region
 # WithImage.cv2.imshow('POI', WithImage.image)
