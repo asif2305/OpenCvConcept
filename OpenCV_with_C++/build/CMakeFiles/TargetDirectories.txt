@@ -1,0 +1,9 @@
+D:/Github Repo/GitHub/OpenCvConcept/OpenCV_with_C++/build/CMakeFiles/Experimental.dir
+D:/Github Repo/GitHub/OpenCvConcept/OpenCV_with_C++/build/CMakeFiles/Nightly.dir
+D:/Github Repo/GitHub/OpenCvConcept/OpenCV_with_C++/build/CMakeFiles/Continuous.dir
+D:/Github Repo/GitHub/OpenCvConcept/OpenCV_with_C++/build/CMakeFiles/NightlyMemoryCheck.dir
+D:/Github Repo/GitHub/OpenCvConcept/OpenCV_with_C++/build/CMakeFiles/OPENCV_WITH_C++.dir
+D:/Github Repo/GitHub/OpenCvConcept/OpenCV_with_C++/build/CMakeFiles/PACKAGE.dir
+D:/Github Repo/GitHub/OpenCvConcept/OpenCV_with_C++/build/CMakeFiles/RUN_TESTS.dir
+D:/Github Repo/GitHub/OpenCvConcept/OpenCV_with_C++/build/CMakeFiles/ALL_BUILD.dir
+D:/Github Repo/GitHub/OpenCvConcept/OpenCV_with_C++/build/CMakeFiles/ZERO_CHECK.dir
