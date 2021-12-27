@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 # cv2.IMREAD_GRAYSCALE: It specifies to load an image in grayscale mode. Alternatively, we can pass integer value 0 for this flag.
 # cv2.IMREAD_UNCHANGED: It specifies to load an image as such including alpha channel. Alternatively, we can pass integer value -1 for this flag.
 
-image = cv2.imread("D:/Github Repo/GitHub\OpenCvConcept/road.jpg",1)
+image = cv2.imread("D:/Github Repo/GitHub/OpenCvConcept/road.jpg",1)
 
 # loading the image
 print(image)
