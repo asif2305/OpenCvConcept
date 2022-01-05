@@ -16,6 +16,7 @@ class YoloDarkNet():
         self.net.setPreferableBackend(cv2.dnn.DNN_BACKEND_DEFAULT)
         self.net.setPreferableTarget(cv2.dnn.DNN_TARGET_CPU)
 
+
     # function to get the output layer names
     # in the architecture
     def get_output_layers(self,net):
@@ -62,6 +63,7 @@ class YoloDarkNet():
         bboxes = []
         box_confidences = []
         class_id = []
+        colors = np.random.randint(0, 255, size=(len(self.labelName()), 3), dtype='uint8')
         for output in boxes:
             for det in output:
                 scores = det[5:]
@@ -85,7 +87,8 @@ class YoloDarkNet():
                 box = bboxes[i]
                 (x, y) = bboxes[i][0], bboxes[i][1]
                 (w, h) = bboxes[i][2], bboxes[i][3]
-                cv2.rectangle(image, (x, y), (x + w, y + h), (255, 0, 255), 2)
+                color = [int(j) for j in colors[class_id[i]]]
+                cv2.rectangle(image, (x, y), (x + w, y + h), color, 2)
                 cv2.putText(image, f'{classNames[class_id[i]].upper()} {int(box_confidences[i] * 100)}%',
                             (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 0, 255), 2)
 
