@@ -1,7 +1,7 @@
 import cv2
 
 class OpenCvSSMD():
-    """ OpenCVMaskRcnn takes four parameter for the initialization object"""
+    """ OpenCVSSMD takes four parameter for the initialization object"""
     def __init__(self,model,weights,labelFile):
         self.model = model
         self.weights = weights
