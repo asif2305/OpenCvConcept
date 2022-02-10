@@ -56,6 +56,8 @@ if __name__ == "__main__":
 
     model =  "dnn/mask_rcnn_inception_v2_coco_2018_01_28.pbtxt"
     weights = "dnn/frozen_inference_graph_coco.pb"
+    #model = "dnn/export/pipeline.pbtxt"
+    #weights = "dnn/export/saved_model/saved_model.pb"
     labelFile ='label.txt'
     openCVMask = OpenCVMaskRcnn(model, weights,labelFile)
     # vedio image load
