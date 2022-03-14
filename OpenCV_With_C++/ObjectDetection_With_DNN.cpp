@@ -9,9 +9,9 @@ using namespace cv;
 using namespace dnn;
 
 int main() {
-  //load the COCO class names
+	//load the COCO class names
 	vector<string> class_name;
-	ifstream ifs(string("Resources/SSD_MobileNet/object_detection_classes_coco.txt").c_str());
+	ifstream ifs(string("Resources/SSMD/label.txt").c_str());
 	string line;
 	while (getline(ifs, line)) {
 		class_name.push_back(line);
@@ -20,10 +20,15 @@ int main() {
 	// load the DNN model
 	auto model = readNet("Resources/SSD_MobileNet/frozen_inference_graph.pb",
 		"Resources/SSD_MobileNet/ssd_mobilenet_v2_coco_2018_03_29.pbtxt.txt", "TensorFlow");
+	/*
+		auto model = readNetFromCaffe("Resources/SSMD/MobileNetSSD_deploy.prototxt",
+			"Resources/SSMD/MobileNetSSD_deploy.caffemodel");
+	*/
+
 
 	// read the image from disk
 	//Mat img = imread("Resources/detection.jpg");
-
+	/*
 	 // capture the video
 	VideoCapture cap("Resources/video_1.mp4");
 	// get the video frames' width and height for proper saving of videos
@@ -31,6 +36,13 @@ int main() {
 	int frame_height = static_cast<int>(cap.get(4));
 	// create the `VideoWriter()` object
 	VideoWriter out("video_result.avi", VideoWriter::fourcc('M','J','P','G'),30,Size(frame_width, frame_height));
+	*/
+	// open the camera
+	VideoCapture cap(0);
+
+	// set a minimum confidence score for the detections
+	float min_confidence_score = 0.5;
+
 
 	while (cap.isOpened()) {
 		Mat img;
@@ -39,6 +51,9 @@ int main() {
 
 		int img_height = img.cols;
 		int img_weight = img.rows;
+
+		auto start = getTickCount();
+
 		// Create blob from image
 		Mat blob = blobFromImage(img, 1.0, Size(300, 300), Scalar(127.5, 127.5, 127.5), true, false);
 		model.setInput(blob);
@@ -49,8 +64,10 @@ int main() {
 		// but rather the model’s confidence for the object belonging to the class that it has detected.
 		// Of the final four values, the first two are x, y bounding box coordinates, 
 		// and the last is the bounding box’s widthand height.
-
+		auto end = getTickCount();
+		// matrix with all direction
 		Mat detection(output.size[2], output.size[3], CV_32F, output.ptr<float>());
+		// run through all the prediction
 
 		for (int i = 0; i < detection.rows;i++) {
 			int class_id = detection.at<float>(i, 1);
@@ -70,17 +87,24 @@ int main() {
 
 				// put the FPS text on top of the frame
 
-				putText(img, class_name[class_id - 1].c_str(), Point(box_x, box_y - 5), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 255, 255), 1);
+				putText(img, class_name[class_id - 1] + " " + to_string(int(confidence * 100)) + "%", Point(box_x, box_y - 5), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 255, 255), 1);
 			}
 		}
+		auto totalTime = (end - start) / getTickFrequency();
+		cout << "time" << totalTime << endl;
+		putText(img, "FPS: " + to_string(int(1 / totalTime)), Point(50, 50), FONT_HERSHEY_DUPLEX, 1, Scalar(0, 255, 0), 2, false);
+		imshow("image ", img);
 
-		imshow("Image", img);
-		out.write(img);
+		int k = waitKey(10);
 
-		waitKey(0);
-		destroyAllWindows();
+		if (k == 113) {
+			break;
+		}
+
+
 	}
 	cap.release();
 	destroyAllWindows();
+
 
 }
