@@ -1,0 +1,52 @@
+link: 
+
+https://www.freecodecamp.org/news/python-virtual-environments-explained-with-examples/
+https://www.youtube.com/watch?v=KxvKCSwlUv8
+----------------------------------------------------------
+
+first check pip list and if virtualenv is installed, then go to the below procedures ->
+
+c:\Users\rizwa>E:  or open cmd in E: drive
+
+e:\>dir
+e:\>cd  (Project Folder Name)-> Neural_Network
+
+e:\Neural_Network>virtualenv ANN   <-(create new environment)
+
+e:\Neural_Network>ANN\Scripts\actvate
+
+(ANN) e:\Neural_Network>python -V
+(ANN) e:\Neural_Network>pip -V
+(ANN) e:\Neural_Network>pip install -r requirements.txt  (this is for users who will use this project and install dependent libraries)
+
+(ANN) e:\Neural_Network>pip install ipykernel
+(ANN) e:\Neural_Network>python -m ipykernel install --user --name=ANN
+
+--------------------------------------------------------
+link: https://janakiev.com/blog/jupyter-virtual-envs/
+-------------------------------------------------
+check kernel list : 
+(ANN) e:\Neural_Network>jupyter kernelspec list
+
+uninstall kernel: 
+(ANN) e:\Neural_Network>jupyter kernelspec uninstall myenv
+-----------------------------------------------------------
+
+insall jupyter notebook
+(ANN) e:\Neural_Network>pip install jupyter notebook
+
+--------------------------
+
+delete virtual environment:
+--------------------------
+1. first deactivate
+(myenv) E:\TestVir>deactivate
+2. open windows powershell
+run 
+go to dir E:
+PS E:\> cd TestVir
+PS E:\TestVir> rm -r myenv
+
+--------------------
+finally use 
+pip freeze > requirements.txt
